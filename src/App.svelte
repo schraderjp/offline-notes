@@ -3,6 +3,7 @@
   import Editor from './lib/Editor.svelte';
   import Header from './lib/Header.svelte';
   import { dropdown } from './lib/stores.js';
+  import '@fontsource/clear-sans';
 </script>
 
 <div

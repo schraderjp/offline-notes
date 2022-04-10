@@ -8,6 +8,7 @@
 
 .ProseMirror {
   @apply h-full p-2;
+  font-family: 'Clear Sans', arial, sans-serif;
 }
 
 .ProseMirror ol,
