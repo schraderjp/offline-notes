@@ -51,10 +51,22 @@
   import { set } from 'idb-keyval';
   import { download, readFileInput } from './utils/legacy';
   import tippy from 'sveltejs-tippy';
-  const props = {
-    content: $fileHandle ? 'Saving to Local File' : 'Storing in Browser',
+  let props = {
+    content: `Storing in ${$fileHandle ? 'Local File' : 'Browser'}`,
+    touch: ['hold', 500],
     placement: 'bottom',
   };
+
+  function setProps() {
+    let content;
+    $fileHandle
+      ? (content = 'Saving to Local File')
+      : (content = 'Storing in Browser');
+    let newProps = { ...props, content };
+    props = newProps;
+  }
+
+  $: $fileHandle, setProps();
   let textAlign = '';
   function checkTextAlign() {
     if ($editor.isActive({ textAlign: 'left' })) textAlign = 'left';
@@ -81,10 +93,11 @@
   }
 
   $: $editor && checkTextAlign();
-  $: $fileHandle,
-    (props.content = $fileHandle
-      ? 'Saving to Local File'
-      : 'Storing in Browser');
+
+  // $: $fileHandle,
+  //   (props.content = $fileHandle
+  //     ? 'Saving to Local File'
+  //     : 'Storing in Browser');
 
   let alignIcon = {
     left: faAlignLeft,
@@ -99,7 +112,7 @@
     bind:offsetHeight={$headerHeight}
     class="relative z-20 flex flex-wrap bg-slate-200 shadow-md dark:bg-slate-800"
   >
-    <div class="flex w-full  flex-wrap md:mx-auto md:max-w-2xl">
+    <div class="flex w-full  flex-wrap md:mx-auto md:max-w-5xl">
       {#if modalShown}
         <Portal>
           <div
@@ -182,7 +195,6 @@
         </svelte:fragment>
       </Dropdown>
       <div
-        use:tippy={props}
         class="mx-0.5 my-1 flex h-7 w-7 cursor-default select-none items-center justify-center rounded-md bg-slate-200 hover:brightness-90 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-indigo-700"
       >
         {#if $fileHandle}

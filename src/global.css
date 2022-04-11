@@ -21,7 +21,7 @@
 }
 
 .editor {
-  @apply h-full w-screen overflow-hidden bg-slate-50 dark:bg-neutral-900 md:mx-auto md:max-w-3xl;
+  @apply h-full w-screen overflow-hidden bg-slate-50 dark:bg-neutral-900 md:mx-auto md:max-w-5xl;
 }
 
 .ProseMirror {
