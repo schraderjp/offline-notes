@@ -2,13 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply overflow-hidden;
+  }
+
+  button.active {
+    @apply bg-blue-300 dark:bg-indigo-600;
+  }
+}
+
+.tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+  @apply border-b-slate-700 !important;
+}
+
+.tippy-content {
+  @apply rounded-md bg-slate-700;
+}
+
 .editor {
-  @apply h-full w-screen bg-slate-50;
+  @apply h-full w-screen overflow-hidden bg-slate-50 dark:bg-neutral-900;
 }
 
 .ProseMirror {
-  @apply h-full p-2;
-  font-family: 'Clear Sans', arial, sans-serif;
+  @apply h-full overflow-y-auto p-2 dark:text-slate-50;
+  font-family: 'Noto Sans', arial, sans-serif;
+  scrollbar-color: rgb(110, 110, 110) rgb(179, 179, 179);
+  scrollbar-width: auto;
+}
+
+.ProseMirror mark {
+  @apply rounded-sm px-1 dark:bg-green-300;
+}
+
+.ProseMirror p code {
+  @apply rounded-sm bg-neutral-300 px-1 py-0.5 text-neutral-700;
+}
+
+::-webkit-scrollbar {
+  @apply w-2 cursor-pointer;
+}
+
+::-webkit-scrollbar-track {
+  @apply cursor-pointer bg-slate-300 dark:bg-neutral-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply cursor-pointer rounded-3xl bg-slate-500 dark:bg-slate-700;
 }
 
 .ProseMirror ol,
@@ -22,6 +62,14 @@
 
 .ProseMirror ol {
   @apply list-decimal;
+}
+
+.ProseMirror blockquote {
+  @apply my-2 ml-4 mr-2 rounded-sm border-l-4 border-blue-400 bg-slate-200 py-2 pl-2 dark:border-indigo-900 dark:bg-slate-800;
+}
+
+.ProseMirror hr {
+  @apply mx-auto my-4 w-[95%] border-t-neutral-900 dark:border-t-neutral-500;
 }
 
 .ProseMirror-focused {
@@ -56,6 +104,10 @@
   label
   input:checked {
   @apply form-checkbox mr-2 rounded-sm border border-slate-400 bg-slate-100;
+}
+
+.ProseMirror li[data-checked='true'] * {
+  @apply text-slate-500 line-through;
 }
 
 .ProseMirror > * + * {

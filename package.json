@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@fontsource/clear-sans": "^4.5.3",
+    "@fontsource/noto-sans": "^4.5.9",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@tiptap/core": "^2.0.0-beta.174",
     "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.68",
@@ -41,6 +42,8 @@
     "idb-keyval": "^6.1.0",
     "nanoid": "^3.3.2",
     "showdown": "^2.0.3",
-    "svelte-fa": "^2.4.0"
+    "svelte-fa": "^2.4.0",
+    "svelte-portal": "^2.1.2",
+    "sveltejs-tippy": "^3.0.0"
   }
 }

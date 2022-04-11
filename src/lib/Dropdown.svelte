@@ -3,6 +3,13 @@
   import { slide } from 'svelte/transition';
   export let name = '';
   import { dropdown } from './stores';
+  import tippy from 'sveltejs-tippy';
+  export let tooltip = '';
+  export let placement = 'bottom';
+  const props = {
+    content: tooltip,
+    placement: placement,
+  };
 
   function selectDropdown(name) {
     if ($dropdown === name) {
@@ -15,8 +22,9 @@
 
 <div class="relative">
   <button
+    use:tippy={props}
     on:click|stopPropagation={() => selectDropdown(name)}
-    class="z-20 mx-0.5 my-1 flex h-7 w-7 cursor-default select-none items-center justify-center rounded-md bg-slate-200 hover:brightness-90"
+    class="z-20 mx-0.5 my-1 flex h-7 w-7 cursor-default select-none items-center justify-center rounded-md bg-slate-200 hover:brightness-90 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-indigo-700 dark:active:bg-indigo-800"
   >
     <slot name="trigger" />
   </button>

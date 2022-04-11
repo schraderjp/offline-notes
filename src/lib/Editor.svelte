@@ -22,7 +22,7 @@
     $editor.commands.setContent(note);
   }
 
-  onMount(() =>
+  onMount(async () =>
     editor.set(
       new Editor({
         autofocus: 'end',
@@ -44,7 +44,7 @@
           Highlight,
           CodeBlockLowlight.configure({ lowlight }),
         ],
-        content: getLocalNote() ?? '',
+        content: (await get('offline-notes')) ?? '',
         onUpdate({ editor }) {
           if ($fileHandle) {
             writeToFile($fileHandle, editor.getHTML());
@@ -66,7 +66,7 @@
   });
 </script>
 
-<div class="editor relative z-10 overflow-auto" bind:this={element} />
+<div class="editor relative z-10 h-full overflow-y-auto" bind:this={element} />
 
 <style>
   button {
