@@ -15,7 +15,7 @@
   class="wrapper fixed top-0 left-0 h-screen w-screen"
 >
   <Header />
-  <main style:height={mainHeight + 'px'}>
+  <main class="w-full" style:height={mainHeight + 'px'}>
     <Editor />
   </main>
 </div>
