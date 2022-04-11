@@ -66,10 +66,7 @@
   });
 </script>
 
-<div
-  class="editor relative z-10 h-full overflow-y-auto md:mx-auto md:max-w-2xl"
-  bind:this={element}
-/>
+<div class="editor relative z-10 h-full overflow-y-auto" bind:this={element} />
 
 <style>
   button {

@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply overflow-hidden bg-slate-200 dark:bg-neutral-800;
+    @apply overflow-hidden bg-slate-50 dark:bg-neutral-900;
   }
 
   button.active {
@@ -21,7 +21,7 @@
 }
 
 .editor {
-  @apply h-full w-screen overflow-hidden bg-slate-50 dark:bg-neutral-900;
+  @apply h-full w-screen overflow-hidden bg-slate-50 dark:bg-neutral-900 md:mx-auto md:max-w-3xl;
 }
 
 .ProseMirror {
@@ -80,7 +80,8 @@
   @apply flex list-none flex-col;
 }
 
-.ProseMirror ul[data-type='taskList'] div, .ProseMirror ul[data-type='taskList'] p {
+.ProseMirror ul[data-type='taskList'] div,
+.ProseMirror ul[data-type='taskList'] p {
   @apply grow;
 }
 
