@@ -81,6 +81,10 @@
   }
 
   $: $editor && checkTextAlign();
+  $: $fileHandle,
+    (props.content = $fileHandle
+      ? 'Saving to Local File'
+      : 'Storing in Browser');
 
   let alignIcon = {
     left: faAlignLeft,
@@ -95,31 +99,53 @@
     bind:offsetHeight={$headerHeight}
     class="relative z-20 flex flex-wrap bg-slate-200 shadow-md dark:bg-slate-800"
   >
-    <div class="flex w-full  md:mx-auto md:max-w-2xl">
+    <div class="flex w-full  flex-wrap md:mx-auto md:max-w-2xl">
       {#if modalShown}
-        <div
-          class="fixed top-0 left-0 z-40 h-screen w-screen bg-black bg-opacity-40"
-        />
-      {/if}
-      <dialog
-        bind:this={filenameDialog}
-        on:submit={e => {
-          download(filename, $editor.getHTML());
-          modalShown = false;
-        }}
-        class="z-50 rounded-md shadow-xl"
-      >
-        <form method="dialog">
-          <label for="filename">Filename:</label>
-          <input bind:value={filename} id="filename" type="text" />
-          <button
-            on:click|preventDefault={() => {
-              filenameDialog.close();
-              modalShown = false;
-            }}>Cancel</button
+        <Portal>
+          <div
+            class="fixed top-0 left-0 z-40 h-screen w-screen bg-black bg-opacity-40"
+          />
+        </Portal>
+        <Portal>
+          <div
+            bind:this={filenameDialog}
+            on:click={() => (modalShown = false)}
+            class="fixed z-50 flex h-full w-full items-center justify-center rounded-md shadow-xl"
           >
-        </form>
-      </dialog>
+            <div
+              on:click|stopPropagation
+              class="flex flex-col rounded-md bg-slate-100 p-6 dark:bg-slate-600 md:max-w-2xl"
+            >
+              <label
+                class="text-center text-xl font-bold dark:text-slate-50"
+                for="filename">Filename:</label
+              >
+              <input
+                class="my-4 rounded-md px-2 py-1"
+                input
+                bind:value={filename}
+                id="filename"
+                type="text"
+              />
+              <div class="flex w-full items-center justify-center">
+                <button
+                  class="mx-3 dark:text-slate-50"
+                  on:click|preventDefault|stopPropagation={() => {
+                    download(filename, $editor.getHTML());
+                    modalShown = false;
+                  }}>Download</button
+                >
+                <button
+                  class="mx-3 dark:text-slate-50"
+                  on:click|preventDefault|stopPropagation={() => {
+                    modalShown = false;
+                  }}>Cancel</button
+                >
+              </div>
+            </div>
+          </div>
+        </Portal>
+      {/if}
       <input
         on:change={readFileInput}
         class="hidden"

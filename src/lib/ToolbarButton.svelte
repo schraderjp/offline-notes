@@ -7,6 +7,7 @@
   const props = {
     content: `<span>${tooltip}</span>`,
     allowHTML: true,
+    touch: ['hold', 500],
     placement: placement,
   };
 </script>

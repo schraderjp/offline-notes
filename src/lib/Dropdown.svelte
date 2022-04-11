@@ -8,6 +8,7 @@
   export let placement = 'bottom';
   const props = {
     content: tooltip,
+    touch: ['hold', 500],
     placement: placement,
   };
 
