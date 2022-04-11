@@ -93,7 +93,7 @@
 {#if $editor}
   <header
     bind:offsetHeight={$headerHeight}
-    class="relative z-20 flex flex-wrap bg-slate-200 shadow-md dark:bg-slate-800 lg:mx-auto lg:max-w-2xl"
+    class="relative z-20 flex flex-wrap bg-slate-200 shadow-md dark:bg-slate-800 md:mx-auto md:max-w-2xl"
   >
     {#if modalShown}
       <div
