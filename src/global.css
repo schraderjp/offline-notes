@@ -80,6 +80,10 @@
   @apply flex list-none flex-col;
 }
 
+.ProseMirror ul[data-type='taskList'] div, .ProseMirror ul[data-type='taskList'] p {
+  @apply grow;
+}
+
 .ProseMirror ul[data-type='taskList'] > li {
   @apply my-1 flex items-start;
 }
